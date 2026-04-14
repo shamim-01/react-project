@@ -17,11 +17,14 @@ This project is a responsive marketing landing page with sections for:
 
 It uses animations, icon support, and a clean UI powered by Tailwind CSS.
 
-## Live Demo
 
-Visit the live demo once the app is deployed:
 
-react-project-szdb-ylsv8pszy-shamimalam4949-8446s-projects.vercel.app
+## 🚀 Live Demo
+
+🔗 **Visit Here:**
+https://your-username.github.io/your-repo-name
+
+
 
 
 ## Key Technologies
