@@ -1,5 +1,8 @@
 import React from 'react';
 import BlogCard from './BlogCard';
+import man3 from '../images/programmer_v_02.jpg';
+import man5 from '../images/19362653.jpg';
+import man4 from '../images/40752.jpg';
 
 const Blogs = () => {
   const blogPosts = [
@@ -7,7 +10,7 @@ const Blogs = () => {
       title: 'The Future of Web Development in 2026',
       description:
         'Explore the latest trends and technologies shaping the future of web development. From AI integration to edge computing.',
-      image: './src/images/programmer_v_02.jpg',
+      image: man3,
       date: 'Mar 15, 2026',
       readTime: '5 min read',
       author: 'David Kim',
@@ -16,7 +19,7 @@ const Blogs = () => {
       title: 'Mastering React Hooks: Advanced Patterns',
       description:
         'Deep dive into advanced React Hooks patterns and learn how to build scalable, maintainable applications with custom hooks.',
-      image: './src/images/19362653.jpg',
+      image: man5,
       date: 'Mar 10, 2026',
       readTime: '8 min read',
       author: 'Lisa Wang',
@@ -25,7 +28,7 @@ const Blogs = () => {
       title: 'Building Scalable SaaS Applications',
       description:
         'Learn the architecture patterns and best practices for building SaaS applications that can scale to millions of users.',
-      image: './src/images/40752.jpg',
+      image: man4,
       date: 'Mar 5, 2026',
       readTime: '6 min read',
       author: 'James Wilson',

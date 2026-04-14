@@ -1,31 +1,35 @@
 import React from 'react';
 import TeamCard from './TeamCard';
 import { FaRocket, FaEye, FaHandshake } from 'react-icons/fa';
+import man3 from '../images/man3.jpg';
+import man5 from '../images/man5.jpg';
+import man4 from '../images/man4.jpg';
+import man2 from '../images/man2.jpg';
 
 const About = () => {
   const teamMembers = [
     {
       name: 'Alex Thompson',
       role: 'CEO & Founder',
-      image: './src/images/man3.jpg',
+      image: man3,
       bio: '15+ years in tech leadership',
     },
     {
       name: 'James Lee',
       role: 'Head of Engineering',
-      image: './src/images/man5.jpg',
+      image: man5,
       bio: 'Full-stack expert, AI specialist',
     },
     {
       name: 'James Wilson',
       role: 'Product Director',
-      image: './src/images/man4.jpg',
+      image: man4,
       bio: 'Product strategy and UX expert',
     },
     {
       name: 'Priya Sharma',
       role: 'Lead Designer',
-      image: './src/images/man2.jpg',
+      image: man2,
       bio: 'Award-winning UI/UX designer',
     },
   ];

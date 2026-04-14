@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import TestimonialCard from './TestimonialCard';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import man3 from '../images/man3.jpg';
+import man5 from '../images/man5.jpg';
+import man4 from '../images/man4.jpg';
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -9,7 +12,7 @@ const Testimonials = () => {
     {
       name: 'Sarah Johnson',
       role: 'CTO at TechCorp',
-      image: './src/images/man4.jpg',
+      image: man4,
       content:
         "Smart Coders transformed our development process. Their expertise and dedication resulted in a 40% increase in our team's productivity. The real-time collaboration features are game-changing!",
       rating: 5,
@@ -17,7 +20,7 @@ const Testimonials = () => {
     {
       name: 'Michael Chen',
       role: 'Founder of StartupX',
-      image: './src/images/man3.jpg',
+      image: man3,
       content:
         'Working with Smart Coders was the best decision we made. They delivered our MVP in record time and the quality exceeded our expectations. Their team is incredibly responsive and professional.',
       rating: 5,
@@ -25,7 +28,7 @@ const Testimonials = () => {
     {
       name: 'Emily Rodriguez',
       role: 'Product Manager at InnovateLabs',
-      image: './src/images/man1.jpg',
+      image: man5,
       content:
         "The analytics dashboard provided by Smart Coders gives us invaluable insights. We've been able to make data-driven decisions that have significantly improved our product strategy.",
       rating: 5,

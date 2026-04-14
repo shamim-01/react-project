@@ -1,6 +1,9 @@
 import React from 'react';
 import FeatureCard from './FeatureCard';
 import { FaComments, FaChartLine, FaShieldAlt } from 'react-icons/fa';
+import man3 from '../images/programmer_v_02.jpg';
+import man5 from '../images/19362653.jpg';
+import man4 from '../images/40752.jpg';
 
 const Features = () => {
   const features = [
@@ -9,7 +12,7 @@ const Features = () => {
       title: 'Real-time Communication',
       description:
         'Connect with your team instantly through our advanced messaging system. Share ideas, files, and feedback in real-time with crystal clear audio and video calls.',
-      image: './src/images/programmer_v_02.jpg',
+      image: man3,
       gradient: 'from-blue-400 to-cyan-500',
     },
     {
@@ -17,7 +20,7 @@ const Features = () => {
       title: 'Smart Analytics Dashboard',
       description:
         'Track your project progress with intelligent analytics. Get actionable insights, performance metrics, and predictive analysis to make data-driven decisions.',
-      image: './src/images/19362653.jpg',
+      image: man5,
       gradient: 'from-purple-400 to-pink-500',
     },
     {
@@ -25,7 +28,7 @@ const Features = () => {
       title: 'Enterprise-grade Security',
       description:
         'Your data is protected with military-grade encryption. We ensure compliance with global security standards and provide advanced threat protection.',
-      image: './src/images/40752.jpg',
+      image: man4,
       gradient: 'from-green-400 to-emerald-500',
     },
   ];
