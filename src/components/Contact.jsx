@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   FaEnvelope,
   FaPhone,
@@ -9,6 +9,7 @@ import {
   FaBuilding,
   FaCheckCircle,
   FaArrowRight,
+  FaRegSmile,
 } from 'react-icons/fa';
 import { MdSupportAgent, MdEmail, MdPhone, MdLocationOn } from 'react-icons/md';
 
@@ -23,7 +24,51 @@ const Contact = () => {
 
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isFocused, setIsFocused] = useState({});
+  const [counters, setCounters] = useState({
+    clients: 0,
+    support: 0,
+    satisfaction: 0,
+    experience: 0,
+  });
+
+  // Counter Animation
+  useEffect(() => {
+    const targets = {
+      clients: 500,
+      support: 24,
+      satisfaction: 100,
+      experience: 15,
+    };
+    const duration = 2000;
+    const steps = 60;
+    const interval = duration / steps;
+
+    let step = 0;
+    const timer = setInterval(() => {
+      step++;
+      setCounters({
+        clients: Math.min(
+          Math.floor((targets.clients / steps) * step),
+          targets.clients,
+        ),
+        support: Math.min(
+          Math.floor((targets.support / steps) * step),
+          targets.support,
+        ),
+        satisfaction: Math.min(
+          Math.floor((targets.satisfaction / steps) * step),
+          targets.satisfaction,
+        ),
+        experience: Math.min(
+          Math.floor((targets.experience / steps) * step),
+          targets.experience,
+        ),
+      });
+      if (step >= steps) clearInterval(timer);
+    }, interval);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const validate = () => {
     const newErrors = {};
@@ -54,21 +99,12 @@ const Contact = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
-    // Clear error when user starts typing
     if (errors[e.target.name]) {
       setErrors({
         ...errors,
         [e.target.name]: '',
       });
     }
-  };
-
-  const handleFocus = field => {
-    setIsFocused({ ...isFocused, [field]: true });
-  };
-
-  const handleBlur = field => {
-    setIsFocused({ ...isFocused, [field]: false });
   };
 
   const handleSubmit = e => {
@@ -78,7 +114,6 @@ const Contact = () => {
     if (Object.keys(validationErrors).length === 0) {
       setIsSubmitted(true);
       console.log('Form submitted:', formData);
-      // Reset form after 3 seconds
       setTimeout(() => {
         setFormData({
           name: '',
@@ -102,22 +137,25 @@ const Contact = () => {
       color: 'from-purple-500 to-pink-500',
       bgColor: 'from-purple-50 to-pink-50',
       borderColor: 'border-purple-200',
+      delay: 0,
     },
     {
       icon: MdPhone,
       title: 'Call Us',
-      details: ['+1 (555) 123-4567', '+1 (555) 987-6543'],
+      details: ['+99 (555) 000-0000', '+99 (555) 111-1111'],
       color: 'from-blue-500 to-cyan-500',
       bgColor: 'from-blue-50 to-cyan-50',
       borderColor: 'border-blue-200',
+      delay: 100,
     },
     {
       icon: MdLocationOn,
       title: 'Visit Us',
-      details: ['123 Innovation Street', 'Tech Valley, CA 94043'],
+      details: ['107 Love Road', 'Dhaka , CA 94043'],
       color: 'from-green-500 to-emerald-500',
       bgColor: 'from-green-50 to-emerald-50',
       borderColor: 'border-green-200',
+      delay: 200,
     },
   ];
 
@@ -129,25 +167,18 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-20 bg-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.02]">
-        <div
-          className="h-full w-full"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        ></div>
+      {/* Animated Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 left-0 w-96 h-96 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-pulse"></div>
+        <div className="absolute bottom-20 right-0 w-96 h-96 bg-pink-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse delay-2000"></div>
       </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute top-20 left-0 w-72 h-72 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full mix-blend-multiply filter blur-3xl opacity-60"></div>
-      <div className="absolute bottom-20 right-0 w-72 h-72 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-60"></div>
-
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center bg-gradient-to-r from-purple-50 to-pink-50 rounded-full px-4 py-2 border border-purple-200 shadow-sm mb-4">
-            <FaHeadset className="text-purple-600 mr-2" />
+        {/* Header with Animation */}
+        <div className="text-center mb-16 animate-fadeInUp">
+          <div className="inline-flex items-center bg-gradient-to-r from-purple-50 to-pink-50 rounded-full px-4 py-2 border border-purple-200 shadow-sm mb-4 hover:shadow-md transition-all duration-300">
+            <FaHeadset className="text-purple-600 mr-2 animate-pulse" />
             <span className="text-sm font-semibold text-purple-700">
               Get In Touch
             </span>
@@ -155,7 +186,7 @@ const Contact = () => {
 
           <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-gray-900">
             Let's Discuss Your{' '}
-            <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent animate-gradient">
               Project
             </span>
           </h2>
@@ -165,17 +196,18 @@ const Contact = () => {
           </p>
         </div>
 
-        {/* Contact Info Cards */}
+        {/* Contact Info Cards with Animation */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           {contactInfo.map((info, index) => {
             const Icon = info.icon;
             return (
               <div
                 key={index}
-                className={`group bg-gradient-to-br ${info.bgColor} rounded-2xl p-6 border ${info.borderColor} shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1`}
+                className={`group bg-gradient-to-br ${info.bgColor} rounded-2xl p-6 border ${info.borderColor} shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-slideInUp`}
+                style={{ animationDelay: `${info.delay}ms` }}
               >
                 <div
-                  className={`w-14 h-14 bg-gradient-to-r ${info.color} rounded-xl flex items-center justify-center mb-4 shadow-md group-hover:scale-110 transition-transform duration-300`}
+                  className={`w-14 h-14 bg-gradient-to-r ${info.color} rounded-xl flex items-center justify-center mb-4 shadow-md group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}
                 >
                   <Icon className="text-2xl text-white" />
                 </div>
@@ -183,17 +215,20 @@ const Contact = () => {
                   {info.title}
                 </h3>
                 {info.details.map((detail, i) => (
-                  <p key={i} className="text-gray-600 mb-1">
+                  <p
+                    key={i}
+                    className="text-gray-600 mb-1 group-hover:text-gray-800 transition-colors duration-300"
+                  >
                     {detail}
                   </p>
                 ))}
                 <div className="mt-4 pt-4 border-t border-gray-200/50">
                   <a
                     href="#"
-                    className="text-sm font-semibold text-purple-600 hover:text-purple-700 flex items-center group"
+                    className="text-sm font-semibold text-purple-600 hover:text-purple-700 flex items-center group/link"
                   >
                     Contact via {info.title.toLowerCase()}
-                    <FaArrowRight className="ml-2 text-xs group-hover:translate-x-1 transition-transform" />
+                    <FaArrowRight className="ml-2 text-xs group-hover/link:translate-x-1 transition-transform" />
                   </a>
                 </div>
               </div>
@@ -205,9 +240,9 @@ const Contact = () => {
           {/* Left Column - Additional Info */}
           <div className="lg:col-span-1 space-y-6">
             {/* Office Hours Card */}
-            <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 animate-slideInLeft">
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg flex items-center justify-center animate-pulse">
                   <FaClock className="text-purple-600" />
                 </div>
                 <h3 className="text-lg font-bold text-gray-900">
@@ -218,7 +253,7 @@ const Contact = () => {
                 {officeHours.map((schedule, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0"
+                    className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0 hover:bg-gray-50 px-2 rounded-lg transition-colors duration-300"
                   >
                     <span className="text-gray-700 font-medium">
                       {schedule.day}
@@ -226,7 +261,7 @@ const Contact = () => {
                     <div className="flex items-center space-x-2">
                       <span className="text-gray-600">{schedule.hours}</span>
                       <span
-                        className={`w-2 h-2 rounded-full ${
+                        className={`w-2 h-2 rounded-full animate-pulse ${
                           schedule.status === 'open'
                             ? 'bg-green-500'
                             : schedule.status === 'limited'
@@ -241,9 +276,9 @@ const Contact = () => {
             </div>
 
             {/* Why Choose Us Card */}
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-200 shadow-sm">
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-200 shadow-sm transform hover:-translate-y-1 transition-all duration-300 animate-slideInLeft delay-100">
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center animate-bounce">
                   <FaCheckCircle className="text-white" />
                 </div>
                 <h3 className="text-lg font-bold text-gray-900">
@@ -251,26 +286,26 @@ const Contact = () => {
                 </h3>
               </div>
               <ul className="space-y-3">
-                <li className="flex items-start space-x-2">
-                  <FaCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                <li className="flex items-start space-x-2 group hover:translate-x-1 transition-transform duration-300">
+                  <FaCheckCircle className="text-green-500 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" />
                   <span className="text-gray-700 text-sm">
                     24/7 Dedicated Support Team
                   </span>
                 </li>
-                <li className="flex items-start space-x-2">
-                  <FaCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                <li className="flex items-start space-x-2 group hover:translate-x-1 transition-transform duration-300">
+                  <FaCheckCircle className="text-green-500 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" />
                   <span className="text-gray-700 text-sm">
                     15+ Years Industry Experience
                   </span>
                 </li>
-                <li className="flex items-start space-x-2">
-                  <FaCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                <li className="flex items-start space-x-2 group hover:translate-x-1 transition-transform duration-300">
+                  <FaCheckCircle className="text-green-500 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" />
                   <span className="text-gray-700 text-sm">
                     Certified Expert Developers
                   </span>
                 </li>
-                <li className="flex items-start space-x-2">
-                  <FaCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                <li className="flex items-start space-x-2 group hover:translate-x-1 transition-transform duration-300">
+                  <FaCheckCircle className="text-green-500 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" />
                   <span className="text-gray-700 text-sm">
                     100% Client Satisfaction Rate
                   </span>
@@ -279,14 +314,17 @@ const Contact = () => {
             </div>
 
             {/* Map Preview */}
-            <div className="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm">
-              <div className="bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl h-32 flex items-center justify-center border border-gray-200">
-                <div className="text-center">
-                  <FaBuilding className="text-3xl text-purple-400 mx-auto mb-2" />
+            <div className="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 animate-slideInLeft delay-200">
+              <div className="bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl h-32 flex items-center justify-center border border-gray-200 relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="text-center z-10">
+                  <FaBuilding className="text-3xl text-purple-400 mx-auto mb-2 group-hover:scale-110 transition-transform duration-300" />
                   <p className="text-sm text-gray-600 font-medium">
                     Silicon Valley HQ
                   </p>
-                  <p className="text-xs text-gray-500">View on Google Maps →</p>
+                  <p className="text-xs text-gray-500 group-hover:text-purple-600 transition-colors duration-300">
+                    View on Google Maps →
+                  </p>
                 </div>
               </div>
             </div>
@@ -294,14 +332,14 @@ const Contact = () => {
 
           {/* Right Column - Contact Form */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
+            <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 transform hover:shadow-2xl transition-all duration-300 animate-slideInRight">
               {isSubmitted ? (
-                <div className="text-center py-12">
-                  <div className="w-20 h-20 bg-gradient-to-r from-green-100 to-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="text-center py-12 animate-fadeIn">
+                  <div className="w-20 h-20 bg-gradient-to-r from-green-100 to-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
                     <FaCheckCircle className="text-4xl text-green-600" />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                    Thank You!
+                    Thank You! 🎉
                   </h3>
                   <p className="text-gray-600 mb-6">
                     Your message has been sent successfully. We'll get back to
@@ -328,7 +366,10 @@ const Contact = () => {
 
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid md:grid-cols-2 gap-5">
-                      <div>
+                      <div
+                        className="animate-fadeInUp"
+                        style={{ animationDelay: '0ms' }}
+                      >
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
                           Full Name <span className="text-red-500">*</span>
                         </label>
@@ -338,24 +379,25 @@ const Contact = () => {
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
-                            onFocus={() => handleFocus('name')}
-                            onBlur={() => handleBlur('name')}
                             className={`w-full px-4 py-3 bg-gray-50 rounded-lg border ${
                               errors.name
                                 ? 'border-red-400 focus:ring-red-400'
                                 : 'border-gray-200 focus:ring-purple-400'
-                            } focus:outline-none focus:ring-2 focus:border-transparent transition-all`}
-                            placeholder="John Doe"
+                            } focus:outline-none focus:ring-2 focus:border-transparent transition-all hover:bg-white`}
+                            placeholder="Shamim Alam"
                           />
                           {errors.name && (
-                            <p className="text-red-500 text-xs mt-1">
+                            <p className="text-red-500 text-xs mt-1 animate-shake">
                               {errors.name}
                             </p>
                           )}
                         </div>
                       </div>
 
-                      <div>
+                      <div
+                        className="animate-fadeInUp"
+                        style={{ animationDelay: '100ms' }}
+                      >
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
                           Email Address <span className="text-red-500">*</span>
                         </label>
@@ -365,17 +407,15 @@ const Contact = () => {
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
-                            onFocus={() => handleFocus('email')}
-                            onBlur={() => handleBlur('email')}
                             className={`w-full px-4 py-3 bg-gray-50 rounded-lg border ${
                               errors.email
                                 ? 'border-red-400 focus:ring-red-400'
                                 : 'border-gray-200 focus:ring-purple-400'
-                            } focus:outline-none focus:ring-2 focus:border-transparent transition-all`}
-                            placeholder="john@example.com"
+                            } focus:outline-none focus:ring-2 focus:border-transparent transition-all hover:bg-white`}
+                            placeholder="shamim@example.com"
                           />
                           {errors.email && (
-                            <p className="text-red-500 text-xs mt-1">
+                            <p className="text-red-500 text-xs mt-1 animate-shake">
                               {errors.email}
                             </p>
                           )}
@@ -384,7 +424,10 @@ const Contact = () => {
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-5">
-                      <div>
+                      <div
+                        className="animate-fadeInUp"
+                        style={{ animationDelay: '200ms' }}
+                      >
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
                           Phone Number
                         </label>
@@ -393,12 +436,15 @@ const Contact = () => {
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all"
-                          placeholder="+1 (555) 000-0000"
+                          className="w-full px-4 py-3 bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all hover:bg-white"
+                          placeholder="+99 (555) 000-0000"
                         />
                       </div>
 
-                      <div>
+                      <div
+                        className="animate-fadeInUp"
+                        style={{ animationDelay: '300ms' }}
+                      >
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
                           Subject
                         </label>
@@ -407,13 +453,16 @@ const Contact = () => {
                           name="subject"
                           value={formData.subject}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all"
+                          className="w-full px-4 py-3 bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all hover:bg-white"
                           placeholder="Project Inquiry"
                         />
                       </div>
                     </div>
 
-                    <div>
+                    <div
+                      className="animate-fadeInUp"
+                      style={{ animationDelay: '400ms' }}
+                    >
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
                         Message <span className="text-red-500">*</span>
                       </label>
@@ -421,24 +470,25 @@ const Contact = () => {
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
-                        onFocus={() => handleFocus('message')}
-                        onBlur={() => handleBlur('message')}
                         rows="5"
                         className={`w-full px-4 py-3 bg-gray-50 rounded-lg border ${
                           errors.message
                             ? 'border-red-400 focus:ring-red-400'
                             : 'border-gray-200 focus:ring-purple-400'
-                        } focus:outline-none focus:ring-2 focus:border-transparent transition-all resize-none`}
+                        } focus:outline-none focus:ring-2 focus:border-transparent transition-all resize-none hover:bg-white`}
                         placeholder="Tell us about your project, requirements, or any questions you have..."
                       />
                       {errors.message && (
-                        <p className="text-red-500 text-xs mt-1">
+                        <p className="text-red-500 text-xs mt-1 animate-shake">
                           {errors.message}
                         </p>
                       )}
                     </div>
 
-                    <div className="flex items-center space-x-2">
+                    <div
+                      className="flex items-center space-x-2 animate-fadeInUp"
+                      style={{ animationDelay: '500ms' }}
+                    >
                       <input
                         type="checkbox"
                         id="privacy"
@@ -467,10 +517,11 @@ const Contact = () => {
 
                     <button
                       type="submit"
-                      className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-xl font-semibold hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 flex items-center justify-center group"
+                      className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-xl font-semibold hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 flex items-center justify-center group animate-fadeInUp"
+                      style={{ animationDelay: '600ms' }}
                     >
                       <span>Send Message</span>
-                      <FaPaperPlane className="ml-2 group-hover:translate-x-1 transition-transform" />
+                      <FaPaperPlane className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </button>
 
                     <p className="text-xs text-gray-500 text-center">
@@ -484,44 +535,182 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Trust Indicators */}
+        {/* Trust Indicators with Counter Animation */}
         <div className="mt-16 pt-12 border-t border-gray-200">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center">
+            <div className="text-center group transform hover:scale-110 transition-transform duration-300 animate-fadeInUp">
               <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                500+
+                {counters.clients}+
               </div>
-              <p className="text-sm text-gray-600 font-medium mt-1">
+              <p className="text-sm text-gray-600 font-medium mt-1 flex items-center justify-center gap-1">
+                <FaRegSmile className="text-purple-500" />
                 Happy Clients
               </p>
             </div>
-            <div className="text-center">
+            <div className="text-center group transform hover:scale-110 transition-transform duration-300 animate-fadeInUp delay-100">
               <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-                24/7
+                {counters.support}/7
               </div>
-              <p className="text-sm text-gray-600 font-medium mt-1">
+              <p className="text-sm text-gray-600 font-medium mt-1 flex items-center justify-center gap-1">
+                <FaHeadset className="text-blue-500" />
                 Support Available
               </p>
             </div>
-            <div className="text-center">
+            <div className="text-center group transform hover:scale-110 transition-transform duration-300 animate-fadeInUp delay-200">
               <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-                100%
+                {counters.satisfaction}%
               </div>
-              <p className="text-sm text-gray-600 font-medium mt-1">
+              <p className="text-sm text-gray-600 font-medium mt-1 flex items-center justify-center gap-1">
+                <FaCheckCircle className="text-green-500" />
                 Satisfaction Rate
               </p>
             </div>
-            <div className="text-center">
+            <div className="text-center group transform hover:scale-110 transition-transform duration-300 animate-fadeInUp delay-300">
               <div className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
-                15+
+                {counters.experience}+
               </div>
-              <p className="text-sm text-gray-600 font-medium mt-1">
+              <p className="text-sm text-gray-600 font-medium mt-1 flex items-center justify-center gap-1">
+                <FaBuilding className="text-orange-500" />
                 Years Experience
               </p>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Animation Styles */}
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes slideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes shake {
+          0%,
+          100% {
+            transform: translateX(0);
+          }
+          25% {
+            transform: translateX(-5px);
+          }
+          75% {
+            transform: translateX(5px);
+          }
+        }
+
+        @keyframes gradient {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+
+        .animate-fadeInUp {
+          animation: fadeInUp 0.6s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-fadeIn {
+          animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .animate-slideInLeft {
+          animation: slideInLeft 0.6s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-slideInRight {
+          animation: slideInRight 0.6s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-slideInUp {
+          animation: slideInUp 0.6s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-shake {
+          animation: shake 0.3s ease-in-out;
+        }
+
+        .animate-gradient {
+          background-size: 200% 200%;
+          animation: gradient 3s ease infinite;
+        }
+
+        .delay-100 {
+          animation-delay: 100ms;
+        }
+
+        .delay-200 {
+          animation-delay: 200ms;
+        }
+
+        .delay-300 {
+          animation-delay: 300ms;
+        }
+
+        .delay-1000 {
+          animation-delay: 1s;
+        }
+
+        .delay-2000 {
+          animation-delay: 2s;
+        }
+      `}</style>
     </section>
   );
 };
