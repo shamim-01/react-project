@@ -1,16 +1,114 @@
-# React + Vite
+# React Second Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern single-page application built with React, Vite, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This project is a responsive marketing landing page with sections for:
 
-## React Compiler
+- navigation
+- hero/banner
+- feature highlights
+- testimonials
+- blog cards
+- about section
+- contact form
+- footer
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+It uses animations, icon support, and a clean UI powered by Tailwind CSS.
 
-## Expanding the ESLint configuration
+## Live Demo
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Visit the live demo once the app is deployed:
+
+https://your-project-url.example.com
+
+## Key Technologies
+
+- React 19
+- Vite
+- Tailwind CSS
+- Framer Motion
+- React Icons
+- Swiper
+- ESLint
+
+## Project Structure
+
+- `src/`
+  - `App.jsx` - main application layout and page structure
+  - `main.jsx` - entry point
+  - `components/` - reusable page sections and components
+- `public/` - static assets
+- `package.json` - scripts and dependencies
+- `vite.config.js` - Vite configuration
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm install`
+
+Install dependencies.
+
+### `npm run dev`
+
+Start the development server with hot module replacement.
+
+### `npm run build`
+
+Create a production build in the `dist/` folder.
+
+### `npm run preview`
+
+Serve the production build locally to preview the final app.
+
+### `npm run lint`
+
+Run ESLint to check code quality.
+
+## Getting Started
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   ```
+2. Change into the project folder:
+   ```bash
+   cd react-second
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+5. Open the app in your browser at the address shown by Vite, usually
+   `http://localhost:5173/`.
+
+## Build for Production
+
+To generate a production-ready site:
+
+```bash
+npm run build
+```
+
+Then preview the build locally:
+
+```bash
+npm run preview
+```
+
+## Notes
+
+- Use Tailwind utility classes to customize styling.
+- Components are organized in `src/components` for maintainability.
+- The app includes smooth section reveal behavior on scroll.
+
+## License
+
+This project is provided as-is. Update the license section if you want to
+include a specific license.

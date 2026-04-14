@@ -7,29 +7,25 @@ const About = () => {
     {
       name: 'Alex Thompson',
       role: 'CEO & Founder',
-      image:
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400',
+      image: './src/images/man3.jpg',
       bio: '15+ years in tech leadership',
     },
     {
-      name: 'Maria Garcia',
+      name: 'James Lee',
       role: 'Head of Engineering',
-      image:
-        'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400',
+      image: './src/images/man5.jpg',
       bio: 'Full-stack expert, AI specialist',
     },
     {
       name: 'James Wilson',
       role: 'Product Director',
-      image:
-        'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400',
+      image: './src/images/man4.jpg',
       bio: 'Product strategy and UX expert',
     },
     {
       name: 'Priya Sharma',
       role: 'Lead Designer',
-      image:
-        'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400',
+      image: './src/images/man2.jpg',
       bio: 'Award-winning UI/UX designer',
     },
   ];

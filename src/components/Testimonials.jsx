@@ -9,8 +9,7 @@ const Testimonials = () => {
     {
       name: 'Sarah Johnson',
       role: 'CTO at TechCorp',
-      image:
-        'https://images.unsplash.com/photo-1494790108755-2616f3927a4d?w=150',
+      image: './src/images/man4.jpg',
       content:
         "Smart Coders transformed our development process. Their expertise and dedication resulted in a 40% increase in our team's productivity. The real-time collaboration features are game-changing!",
       rating: 5,
@@ -18,8 +17,7 @@ const Testimonials = () => {
     {
       name: 'Michael Chen',
       role: 'Founder of StartupX',
-      image:
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
+      image: './src/images/man3.jpg',
       content:
         'Working with Smart Coders was the best decision we made. They delivered our MVP in record time and the quality exceeded our expectations. Their team is incredibly responsive and professional.',
       rating: 5,
@@ -27,8 +25,7 @@ const Testimonials = () => {
     {
       name: 'Emily Rodriguez',
       role: 'Product Manager at InnovateLabs',
-      image:
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150',
+      image: './src/images/man1.jpg',
       content:
         "The analytics dashboard provided by Smart Coders gives us invaluable insights. We've been able to make data-driven decisions that have significantly improved our product strategy.",
       rating: 5,

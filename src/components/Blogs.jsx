@@ -7,8 +7,7 @@ const Blogs = () => {
       title: 'The Future of Web Development in 2026',
       description:
         'Explore the latest trends and technologies shaping the future of web development. From AI integration to edge computing.',
-      image:
-        'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600',
+      image: './src/images/programmer_v_02.jpg',
       date: 'Mar 15, 2026',
       readTime: '5 min read',
       author: 'David Kim',
@@ -17,7 +16,7 @@ const Blogs = () => {
       title: 'Mastering React Hooks: Advanced Patterns',
       description:
         'Deep dive into advanced React Hooks patterns and learn how to build scalable, maintainable applications with custom hooks.',
-      image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600',
+      image: './src/images/19362653.jpg',
       date: 'Mar 10, 2026',
       readTime: '8 min read',
       author: 'Lisa Wang',
@@ -26,8 +25,7 @@ const Blogs = () => {
       title: 'Building Scalable SaaS Applications',
       description:
         'Learn the architecture patterns and best practices for building SaaS applications that can scale to millions of users.',
-      image:
-        'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600',
+      image: './src/images/40752.jpg',
       date: 'Mar 5, 2026',
       readTime: '6 min read',
       author: 'James Wilson',

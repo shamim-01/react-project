@@ -9,7 +9,7 @@ const Features = () => {
       title: 'Real-time Communication',
       description:
         'Connect with your team instantly through our advanced messaging system. Share ideas, files, and feedback in real-time with crystal clear audio and video calls.',
-      image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600',
+      image: './src/images/programmer_v_02.jpg',
       gradient: 'from-blue-400 to-cyan-500',
     },
     {
@@ -17,7 +17,7 @@ const Features = () => {
       title: 'Smart Analytics Dashboard',
       description:
         'Track your project progress with intelligent analytics. Get actionable insights, performance metrics, and predictive analysis to make data-driven decisions.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600',
+      image: './src/images/19362653.jpg',
       gradient: 'from-purple-400 to-pink-500',
     },
     {
@@ -25,8 +25,7 @@ const Features = () => {
       title: 'Enterprise-grade Security',
       description:
         'Your data is protected with military-grade encryption. We ensure compliance with global security standards and provide advanced threat protection.',
-      image:
-        'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600',
+      image: './src/images/40752.jpg',
       gradient: 'from-green-400 to-emerald-500',
     },
   ];

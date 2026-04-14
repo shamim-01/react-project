@@ -91,7 +91,7 @@ const Footer = () => {
 
             <div className="bg-gray-800 rounded-lg p-4">
               <p className="text-sm text-gray-400 mb-2">
-                Subscribe to our newsletter
+                Subscribe to our Newsletter
               </p>
               <div className="flex">
                 <input
@@ -110,8 +110,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-gray-800 text-center">
           <p className="text-gray-400 flex items-center justify-center">
-            Made with <FaHeart className="mx-1 text-red-500" /> by Smart Coders
-            Team
+            Made with by Shamim Alam
           </p>
         </div>
       </div>
