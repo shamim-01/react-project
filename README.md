@@ -21,7 +21,8 @@ It uses animations, icon support, and a clean UI powered by Tailwind CSS.
 
 Visit the live demo once the app is deployed:
 
-https://your-project-url.example.com
+react-project-szdb-ylsv8pszy-shamimalam4949-8446s-projects.vercel.app
+
 
 ## Key Technologies
 
